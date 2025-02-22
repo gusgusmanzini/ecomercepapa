@@ -1,30 +1,37 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useParams } from "react-router-dom";
 import { ShoppingBag } from "lucide-react";
-import ProductDetail from './ProductDetail';
 import products from "./data/products";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
-
+import "../src/index.css"
 
 function ProductCard({ product }) {
+  console.log("Imágenes del producto:", product.images); 
+
   return (
-    <div className="product-card">
-      <Swiper spaceBetween={10} slidesPerView={1}>
-        {product.images.map((img, index) => (
-          <SwiperSlide key={index}>
-            <img src={img} alt={`${product.name} ${index + 1}`} className="product-image" />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <Link to={`/product/${product.id}`} className="product-card">
+<Swiper spaceBetween={10} slidesPerView={1}>
+  {product.images.map((img, index) => (
+    <SwiperSlide key={index}>
+      <img
+        src={img}
+        alt={`${product.name} ${index + 1}`}
+        className="product-image"
+      />
+    </SwiperSlide>
+  ))}
+</Swiper>
       <div className="product-info">
         <h3 className="product-name">{product.name}</h3>
         <p className="product-price">${product.price.toFixed(2)}</p>
         <p className="product-description">{product.description}</p>
       </div>
-    </div>
+    </Link>
   );
 }
+
+
 
 function HomePage() {
   const filterProductsByCategory = (category) => {
@@ -56,17 +63,43 @@ function HomePage() {
   );
 }
 
+function ProductDetail() {
+  const { id } = useParams();
+  const product = products.find((p) => p.id === parseInt(id));
+
+  if (!product) return <h2 className="text-center mt-10">Producto no encontrado</h2>;
+
+  return (
+    <div className="p-6">
+      <h1 className="text-2xl font-bold">{product.name}</h1>
+      <Swiper spaceBetween={10} slidesPerView={1}>
+        {product.images && product.images.length > 0 ? (
+          product.images.map((img, index) => (
+            <SwiperSlide key={index}>
+              <img src={img} alt={`${product.name} ${index + 1}`} className="product-image" />
+            </SwiperSlide>
+          ))
+        ) : (
+          <SwiperSlide>
+            <p>Imagen no disponible</p>
+          </SwiperSlide>
+        )}
+      </Swiper>
+      <p className="mt-2">{product.description}</p>
+      <Link to="/" className="text-blue-500 mt-4 inline-block">Volver</Link>
+    </div>
+  );
+}
+
 function App() {
-  return(
+  return (
     <Router>
       <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/product/:id" element={<ProductDetail products={products} />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
       </Routes>
     </Router>
   );
 }
-
-
 
 export default App;
