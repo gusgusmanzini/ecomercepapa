@@ -70,12 +70,12 @@ function ProductDetail() {
   if (!product) return <h2 className="text-center mt-10">Producto no encontrado</h2>;
 
   return (
-    <div className="p-6">
+    <div className="p-6 flex flex-col items-center text-center  space-y-4">
       <h1 className="text-2xl font-bold">{product.name}</h1>
       <Swiper spaceBetween={10} slidesPerView={1}>
         {product.images && product.images.length > 0 ? (
           product.images.map((img, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} className="slide-container">
               <img src={img} alt={`${product.name} ${index + 1}`} className="product-image" />
             </SwiperSlide>
           ))
@@ -85,8 +85,8 @@ function ProductDetail() {
           </SwiperSlide>
         )}
       </Swiper>
-      <p className="mt-2">{product.description}</p>
-      <Link to="/" className="text-blue-500 mt-4 inline-block">Volver</Link>
+      <p className="product-description">{product.description}</p>
+      <Link to="/" className="text-blue-500 mt-4 inline-block font-semibold hover:underline">Volver</Link>
     </div>
   );
 }

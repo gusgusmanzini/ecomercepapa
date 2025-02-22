@@ -41,8 +41,8 @@ body {
 .p-6{
   display: flex;
   text-align: center;
-  align-items: center;
-  justify-content: center;
+ 
+ 
   margin-top: 200px;
   border: red 1px solid;
   color: red;
@@ -89,18 +89,53 @@ body {
 }
 
 
+.slide-container{
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  width: 100%;
+  color: blue;
+}
+
+.slide-text{
+  margin-top: 90px; /* Ajusta la separación con la imagen */
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo sutil para que el texto resalte */
+  border-radius: 8px;
+}
+
+.product-title{
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.product-description {
+  font-size: 16px;
+  color: #555;
+}
+
+.text-lg{
+  font-size: 18px;
+  text-align: center;
+  margin-top: 10px;
+}
+
 
 /* swipper */
 .swipper.slide{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 .product-image{
-  width: 300px;
-  height: 300px;
-  max-height: 400px;
+  width: 100%;
+ height: auto;
+  max-height: 500px;
   object-fit: contain;
   border-radius: 10px;
 }
@@ -116,6 +151,15 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.caño-hormigon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  color: blue;
+}
+
+
 .product-price {
   color: #2c3e50;
   font-weight: bold;
@@ -129,10 +173,18 @@ body {
 
 /* Product Detail Styles */
 .product-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 800px;
   margin: 40px auto;
   padding: 20px;
   text-align: center;
+}
+
+.product-detail-content > * {
+  width: 100%;
+  display: block;
 }
 
 .back-link {
@@ -151,9 +203,15 @@ body {
 .product-detail-content {
 
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  flex-direction: column; /* Apila los elementos verticalmente */
+  align-items: center; /* Centra los elementos */
+  width: 100%;
+  max-width: 600px;
+  text-align: center; 
+}
+.product-detail-content {
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 @media (max-width: 768px) {

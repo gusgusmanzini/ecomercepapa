@@ -1,3 +1,6 @@
+
+
+
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -17,16 +20,19 @@ function ProductDetail({ products }) {
         <ArrowLeft className='arrowleft' />
         Volver a los productos
       </Link>
+
+      {/* Contenedor principal con el título arriba */}
       <div className="product-detail-content">
-        <h1 className=''>{product.name}</h1>
+        <h1 className="product-title">{product.name}</h1>
+
+        {/* Imagen centrada */}
         <div className="product-detail-image">
-        <img src={product.images[0]} alt={product.name} />
+          <img src={product.images[0]} alt={product.name} />
         </div>
 
+        {/* Información debajo de la imagen */}
         <div className="product-detail-info">
-          <h1 className=''>{product.name}</h1>
           <p className="product-detail-price">${product.price.toFixed(2)}</p>
-          <p className="product-detail-category">Category: {product.category}</p>
           <p className="product-detail-description">{product.description}</p>
         </div>
       </div>
